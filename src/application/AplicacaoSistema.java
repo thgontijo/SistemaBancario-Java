@@ -1,6 +1,7 @@
 package application;
 
 import domain.ContaBancariaInfo;
+import domain.FuncoesBancarias;
 import domain.SistemaExeptions;
 
 import java.util.Scanner;
@@ -10,6 +11,7 @@ public class AplicacaoSistema {
         Scanner entrada = new Scanner(System.in);
         ContaBancariaInfo informacoes = new ContaBancariaInfo();
         SistemaExeptions exeptionsSystem = new SistemaExeptions();
+        FuncoesBancarias funcoes = new FuncoesBancarias();
         Boolean continuacaoSistem;
 
         do {
@@ -34,17 +36,13 @@ public class AplicacaoSistema {
             exeptionsSystem.opcaoInvalidaResp();
             if (informacoes.getRespUserSouN().equalsIgnoreCase("n")) {
                 System.out.println("Reiniciando sistema...");
-                for (int i = 0; i < 50; i++) {
-                    System.out.println(" ");
-                }
+                funcoes.limpaTela();
                 continuacaoSistem = false;
             }
             continuacaoSistem = true;
         } while (continuacaoSistem == false);
 
-        for (int i = 0; i < 50; i++) {
-            System.out.println(" ");
-        }
+        funcoes.limpaTela();
 
         System.out.println("-----------MENU-DE-OPÇÕES------------------ ");
         System.out.println("1. Opções relacionadas as informações.");
