@@ -4,10 +4,46 @@ public class ContaBancariaInfo{
     public int setCodigoConta;
     private String nomeTitular;
     private double saldo;
+    private double diminuirSaldo;
     private double dividas;
     private double dividaAtualizada;
     private int codigoConta;
     private String respUserSouN;
+    private int respUserMenu;
+    private int respUserMenuSecundario;
+    private boolean argumentoValido = true;
+
+    public double getDiminuirSaldo() {
+        return diminuirSaldo;
+    }
+
+    public void setDiminuirSaldo(double diminuirSaldo) {
+        this.diminuirSaldo = diminuirSaldo;
+    }
+
+    public int getRespUserMenuSecundario() {
+        return respUserMenuSecundario;
+    }
+
+    public void setRespUserMenuSecundario(int respUserMenuSecundario) {
+        this.respUserMenuSecundario = respUserMenuSecundario;
+    }
+
+    public boolean isArgumentoValido() {
+        return argumentoValido;
+    }
+
+    public void setArgumentoValido(boolean argumentoValido) {
+        this.argumentoValido = argumentoValido;
+    }
+
+    public int getRespUserMenu() {
+        return respUserMenu;
+    }
+
+    public void setRespUserMenu(int respUserMenu) {
+        this.respUserMenu = respUserMenu;
+    }
 
     public double getDividaAtualizada() {
         return dividaAtualizada;
