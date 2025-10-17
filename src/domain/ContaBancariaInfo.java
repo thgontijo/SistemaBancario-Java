@@ -1,13 +1,12 @@
 package domain;
 
-public class ContaBancariaInfo{
-    public int setCodigoConta;
+public class ContaBancariaInfo {
     private String nomeTitular;
     private double saldo;
     private double diminuirSaldo;
     private double dividas;
     private double dividaAtualizada;
-    private int codigoConta;
+    private String codigoConta;
     private String respUserSouN;
     private int respUserMenu;
     private int respUserMenuSecundario;
@@ -85,11 +84,11 @@ public class ContaBancariaInfo{
         this.dividas = dividas;
     }
 
-    public int getCodigoConta() {
+    public String getCodigoConta() {
         return codigoConta;
     }
 
-    public void setCodigoConta(int codigoConta) {
+    public void setCodigoConta(String codigoConta) {
         this.codigoConta = codigoConta;
     }
 }

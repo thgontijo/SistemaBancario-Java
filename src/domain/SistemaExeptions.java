@@ -25,5 +25,17 @@ public class SistemaExeptions extends Exception {
             return false;
         }
     }
+
+    public static boolean valorNegativoInvalido(double valorDigitado) {
+        try {
+            if (valorDigitado < 0) {
+                throw new IllegalArgumentException("O valor nao pode ser menor que 0.");
+            }
+            return true;
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
 

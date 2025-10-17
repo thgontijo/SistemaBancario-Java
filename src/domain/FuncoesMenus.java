@@ -7,12 +7,24 @@ public class FuncoesMenus {
     FuncoesBancarias funcoes = new FuncoesBancarias();
     Scanner entrada = new Scanner(System.in);
 
+    public FuncoesMenus() {
+    }
+
+    public FuncoesMenus(ContaBancariaInfo informacoes) {
+        this.informacoes = informacoes;
+    }
+
     public void respUserContinuar() {
         System.out.println("-----------------");
         System.out.println("Digite qualquer coisa para prosseguir: ");
         entrada.nextLine();
         limpaTela();
         menuPrimario();
+    }
+
+    public void respUserMenuSecundarioMetodo() {
+        informacoes.setRespUserMenuSecundario(entrada.nextInt());
+        entrada.nextLine();
     }
 
     public void limpaTela() {
@@ -28,9 +40,12 @@ public class FuncoesMenus {
         System.out.println("3. Opções relacionadas as dívidas.");
         System.out.println("4. Sair.");
         System.out.println("Digite sua opção: ");
+        informacoes.setRespUserMenu(entrada.nextInt());
+        entrada.nextLine();
+        menuSecundario();
     }
 
-    public void menuSecundario(ContaBancariaInfo informacoes) {
+    public void menuSecundario() {
         switch (informacoes.getRespUserMenu()) {
             case 1:
                 System.out.println("-----------MENU-DE-INFORMAÇÕES------------------");
@@ -38,6 +53,8 @@ public class FuncoesMenus {
                 System.out.println("2. Alterar informações.");
                 System.out.println("3. Voltar.");
                 System.out.println("Digite sua opção: ");
+                respUserMenuSecundarioMetodo();
+                menuTerciario();
                 break;
 
             case 2:
@@ -48,6 +65,8 @@ public class FuncoesMenus {
                 System.out.println("4. Diminuir saldo.");
                 System.out.println("5. Voltar.");
                 System.out.println("Digite sua opção: ");
+                respUserMenuSecundarioMetodo();
+                menuTerciario();
                 break;
 
             case 3:
@@ -57,6 +76,8 @@ public class FuncoesMenus {
                 System.out.println("3. Diminuir dívidas.");
                 System.out.println("4. Voltar.");
                 System.out.println("Digite sua opção: ");
+                respUserMenuSecundarioMetodo();
+                menuTerciario();
                 break;
 
             case 4:
@@ -66,19 +87,22 @@ public class FuncoesMenus {
 
             default:
                 System.out.println("Digite um valor válido!");
+                respUserContinuar();
                 break;
         }
     }
 
-    public void menuTerciario(ContaBancariaInfo informacoes) {
+    public void menuTerciario() {
         if (informacoes.getRespUserMenu() == 1) {
             switch (informacoes.getRespUserMenuSecundario()) {
                 case 1:
-                    funcoes.informacoesUsuario();
+                    limpaTela();
+                    funcoes.informacoesUsuario(informacoes);
                     respUserContinuar();
                     break;
 
                 case 2:
+                    limpaTela();
                     CadastroUser.cadastrarUser(informacoes);
                     respUserContinuar();
                     break;
@@ -91,27 +115,32 @@ public class FuncoesMenus {
 
                 default:
                     System.out.println("Digite um valor válido!");
+                    respUserContinuar();
                     break;
             }
         } else if (informacoes.getRespUserMenu() == 2) {
             switch (informacoes.getRespUserMenuSecundario()) {
                 case 1:
-                    funcoes.verificarSaldo();
+                    limpaTela();
+                    funcoes.verificarSaldo(informacoes);
                     respUserContinuar();
                     break;
 
                 case 2:
-                    funcoes.verificarSaldoSemDivida();
+                    limpaTela();
+                    funcoes.verificarSaldoSemDivida(informacoes);
                     respUserContinuar();
                     break;
 
                 case 3:
-                    funcoes.aumentarSaldo();
+                    limpaTela();
+                    funcoes.aumentarSaldo(informacoes);
                     respUserContinuar();
                     break;
 
                 case 4:
-                    funcoes.diminuirSaldo();
+                    limpaTela();
+                    funcoes.diminuirSaldo(informacoes);
                     respUserContinuar();
                     break;
 
@@ -123,26 +152,31 @@ public class FuncoesMenus {
 
                 default:
                     System.out.println("Digite um valor válido!");
+                    respUserContinuar();
                     break;
             }
         } else if (informacoes.getRespUserMenu() == 3) {
             switch (informacoes.getRespUserMenuSecundario()) {
                 case 1:
-                    funcoes.verificarDividas();
+                    limpaTela();
+                    funcoes.verificarDividas(informacoes);
                     respUserContinuar();
                     break;
 
                 case 2:
-                    funcoes.aumentarDividas();
+                    limpaTela();
+                    funcoes.aumentarDividas(informacoes);
                     respUserContinuar();
                     break;
 
                 case 3:
-                    funcoes.diminuirDividas();
+                    limpaTela();
+                    funcoes.diminuirDividas(informacoes);
                     respUserContinuar();
                     break;
 
                 case 4:
+                    limpaTela();
                     System.out.println("Voltando...");
                     limpaTela();
                     menuPrimario();
@@ -150,6 +184,7 @@ public class FuncoesMenus {
 
                 default:
                     System.out.println("Digite um valor válido!");
+                    respUserContinuar();
                     break;
             }
         }

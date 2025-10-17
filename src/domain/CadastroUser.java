@@ -9,22 +9,25 @@ public class CadastroUser {
     static FuncoesMenus funcoesMenu = new FuncoesMenus();
 
     public static void cadastrarUser(ContaBancariaInfo informacoes) {
+        boolean avancarBoolean;
         do {
             System.out.println("Digite seu nome: ");
             informacoes.setNomeTitular(entrada.nextLine());
 
-            System.out.println("Digite o código da conta (mínimo 4 dígitos):");
-            String codigoDigitado = entrada.nextLine();
+            do {
+                avancarBoolean = true;
+                System.out.println("Digite o código da conta (mínimo 4 dígitos):");
+                String codigoDigitado = entrada.nextLine();
 
-            if (codigoDigitado.length() >= 4) {
-                String primeiros4 = codigoDigitado.substring(0, 4);
-                int codigoInt = Integer.parseInt(primeiros4);
-                informacoes.setCodigoConta(codigoInt);
-                System.out.println("Os 4 primeiros dígitos são: " + informacoes.getCodigoConta());
-            } else {
-                System.out.println("Código muito curto!");
-            }
-
+                if (codigoDigitado.length() >= 4) {
+                    String primeiros4 = codigoDigitado.substring(0, 4);
+                    informacoes.setCodigoConta(primeiros4);
+                    System.out.println("Os 4 primeiros dígitos são: " + informacoes.getCodigoConta());
+                } else {
+                    System.out.println("Código muito curto!");
+                    avancarBoolean = false;
+                }
+            } while (!avancarBoolean);
 
             System.out.println("Digite o saldo da conta: ");
             informacoes.setSaldo(entrada.nextDouble());
@@ -32,19 +35,21 @@ public class CadastroUser {
 
             System.out.println("Você tem alguma dívida? (S/N)");
             informacoes.setRespUserSouN(entrada.nextLine());
-            exeptionsSystem.opcaoInvalidaResp(informacoes);
+            continuacaoSistem = exeptionsSystem.opcaoInvalidaResp(informacoes);
 
+            if (continuacaoSistem == false) {
+                System.out.println("Reiniciando sistema...");
+                funcoesMenu.limpaTela();
+            }
             if (informacoes.getRespUserSouN().equalsIgnoreCase("s")) {
                 System.out.println("Digite o valor da divida: ");
                 informacoes.setDividas(entrada.nextDouble());
                 entrada.nextLine();
                 System.out.println("Divida atualizada!");
             }
-
             System.out.println("Todas as informações estão corretas? (S/N)");
             informacoes.setRespUserSouN(entrada.nextLine());
             exeptionsSystem.opcaoInvalidaResp(informacoes);
-
             if (informacoes.getRespUserSouN().equalsIgnoreCase("n") || !informacoes.getRespUserSouN().equalsIgnoreCase("s")) {
                 System.out.println("Reiniciando sistema...");
                 funcoesMenu.limpaTela();

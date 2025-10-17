@@ -8,10 +8,7 @@ public class AplicacaoSistema {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
         ContaBancariaInfo informacoes = new ContaBancariaInfo();
-        SistemaExeptions exeptionsSystem = new SistemaExeptions();
-        FuncoesBancarias funcoes = new FuncoesBancarias();
-        FuncoesMenus funcoesMenu = new FuncoesMenus();
-        Boolean continuacaoSistem;
+        FuncoesMenus funcoesMenu = new FuncoesMenus(informacoes);
 
 
         CadastroUser.cadastrarUser(informacoes);
@@ -19,15 +16,11 @@ public class AplicacaoSistema {
         funcoesMenu.limpaTela();
 
         funcoesMenu.menuPrimario();
-        informacoes.setRespUserMenu(entrada.nextInt());
-        entrada.nextLine();
 
         funcoesMenu.limpaTela();
 
-        funcoesMenu.menuSecundario(informacoes);
-        informacoes.setRespUserMenuSecundario(entrada.nextInt());
-        entrada.nextLine();
+        funcoesMenu.menuSecundario();
 
-        funcoesMenu.menuTerciario(informacoes);
+        funcoesMenu.menuTerciario();
     }
 }
